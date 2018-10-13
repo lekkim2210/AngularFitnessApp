@@ -3,7 +3,7 @@ import { Http, Response } from '../../../node_modules/@angular/http';
 import { Observable } from '../../../node_modules/rxjs/';
 
 @Injectable()
-export class AuthenticationService {
+export class  AuthenticationService {
 
   private baseUrl = 'someurl.com/something';
 
@@ -22,7 +22,7 @@ export class AuthenticationService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('jwt-token', user.token);
       }
-    }); 
+    });
   }
 
   private saveToken(token: string) {
