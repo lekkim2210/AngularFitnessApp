@@ -34,6 +34,7 @@ workoutController.getAllWorkouts = (req, res) => {
       res
         .status(400)
         .json({"message" : "name cannot be empty"});
+        console.log('req: ', req.body);
         return;
     }
     const newWorkout = new WorkoutProgram({
