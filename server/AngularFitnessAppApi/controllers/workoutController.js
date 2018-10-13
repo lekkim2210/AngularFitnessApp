@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import WorkoutModel from '../models/workout';
-import ExerciseModel from '../models/exercise';
+import ExerciseSchema from '../models/exercise';
 
 let workoutController = {};
+
+const ExerciseModel = mongoose.model('exercise', ExerciseSchema);
 
 workoutController.getAllWorkouts = (req, res) => {
   WorkoutModel.find().then(workouts => {

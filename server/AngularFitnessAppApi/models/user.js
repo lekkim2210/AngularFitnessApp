@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { MongooseAutoIncrementID } from 'mongoose-auto-increment-reworked';
 
-const Shema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     name: { type: String, required: true },
@@ -13,4 +13,6 @@ const userSchema = new Schema({
     modelName: 'user',
   });
 
-  export default mongoose.model('user', user);
+  let userModel = mongoose.model('user', userSchema);
+  
+  export default userModel;

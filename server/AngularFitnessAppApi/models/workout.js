@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
     name: { type: String, required: true },
     description: { type: String},
-    exercises: { type: [ExerciseSchema]}
+    exercises: { type: [ExerciseSchema] }
   });
 
   workoutSchema.plugin(MongooseAutoIncrementID.plugin, {
