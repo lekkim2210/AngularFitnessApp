@@ -10,4 +10,6 @@ const ExerciseSchema = new Schema(
     }
 );
 
-export default ExerciseSchema;
+const exerciseModel = mongoose.model('exercise', ExerciseSchema);
+
+  export default exerciseModel;
