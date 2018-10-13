@@ -64,8 +64,8 @@ workoutController.getAllWorkouts = (req, res) => {
     const newExercise = new ExerciseModel();
     newExercise.name = req.body.name;
     newExercise.description = req.body.description;
-    newExercise.set = req.body.sets;
-    newExercise.duration = req.body.reps;
+    newExercise.sets = req.body.sets;
+    newExercise.reps = req.body.reps;
     
     WorkoutModel.findByIdAndUpdate(req.params.id, {
       $addToSet: { exercises: newExercise },
