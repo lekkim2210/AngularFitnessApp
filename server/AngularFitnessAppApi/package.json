@@ -3,7 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "babel-node --presets=env ./bin/www"
+  },
+  "engines": {
+    "node": "8.11.1",
+    "npm": "6.4.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -12,6 +25,7 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "mongoose": "^5.3.3",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "mongoose-auto-increment-reworked": "^1.2.1"
   }
 }
