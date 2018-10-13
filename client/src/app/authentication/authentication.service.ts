@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '../../../node_modules/@angular/core';
 import { Http, Response } from '../../../node_modules/@angular/http';
-import { Observable } from '../../../node_modules/rxjs/Observable';
+import { Observable } from '../../../node_modules/rxjs/';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,9 +15,14 @@ export class AuthenticationService {
       email: email,
       password: password
     })
-    .map((response, Response) => {
-      const user = response.json(); //mangler noget save to local her. Måske laves anerledes. 
-    });
+    .map((response: Response) => {
+      // login successful if there's a jwt token in the response
+      const user = response.json();
+      if (user && user.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('jwt-token', user.token);
+      }
+    }); 
   }
 
   private saveToken(token: string) {
