@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
-import Workout from '../models/workout';
-import ExerciseSchema from '../models/exercise';
+import WorkoutModel from '../models/workout';
+import ExerciseModel from '../models/exercise';
 
 let workoutController = {};
 
 workoutController.getAllWorkouts = (req, res) => {
-    Workout.find().then(workouts => {
+  WorkoutModel.find().then(workouts => {
       res.status(200);
       res.json(workouts);
       return;
@@ -21,7 +21,7 @@ workoutController.getAllWorkouts = (req, res) => {
         return;
     }
     const workoutId = req.params.id;
-    Workout.findById(workoutId).then(workout => {
+    WorkoutModel.findById(workoutId).then(workout => {
       res.status(200);
       res.json(workout);
       return;
@@ -30,6 +30,7 @@ workoutController.getAllWorkouts = (req, res) => {
   };
   
   workoutController.addNewWorkout = (req, res) => {
+    console.log('req: ', req.body);
     if(!req.body.name || req.body.name === ''){
       res
         .status(400)
@@ -37,7 +38,7 @@ workoutController.getAllWorkouts = (req, res) => {
         console.log('req: ', req.body);
         return;
     }
-    const newWorkout = new WorkoutProgram({
+    const newWorkout = new WorkoutModel({
       name : req.body.name
     });
     newWorkout.save(
@@ -49,8 +50,7 @@ workoutController.getAllWorkouts = (req, res) => {
     );
     return;    
   }
-  
-  let ExerciseProgram = mongoose.model('ExerciseProgram', ExerciseSchema);
+
   
   workoutController.addNewExercise = (req, res) => {
     if(!req.body.name || !req.body.description || 
@@ -61,13 +61,13 @@ workoutController.getAllWorkouts = (req, res) => {
         return;
       }
   
-    const newExercise = new ExerciseProgram();
+    const newExercise = new ExerciseModel();
     newExercise.name = req.body.name;
     newExercise.description = req.body.description;
-    newExercise.set = req.body.sets;
-    newExercise.duration = req.body.reps;
+    newExercise.sets = req.body.sets;
+    newExercise.reps = req.body.reps;
     
-    WorkoutProgram.findByIdAndUpdate(req.params.id, {
+    WorkoutModel.findByIdAndUpdate(req.params.id, {
       $addToSet: { exercises: newExercise },
     }).then(() => {
       res
