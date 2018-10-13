@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  isLoggedIn = false;
+
+  Login(Username: string, Password: string): void {
+
+  }
 }
